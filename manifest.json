@@ -8,7 +8,7 @@
       "id": "avdb",
       "name": "18 Plus AV",
       "description": "Kho phim Châu Á & JAV 18+ giải mã HLS trực tiếp chất lượng cao kèm Headers chống chặn",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "author": "9000000",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/avdb.js",
