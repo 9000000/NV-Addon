@@ -1,49 +1,198 @@
-# 🔞 NV-Addon (AVDB 18+ Nuvio Provider)
+# 🎬 NuvioTV Community Addons
 
-Plugin Scraper xem phim 18+ Châu Á & JAV trực tiếp từ **AVDB** dành cho ứng dụng **Nuvio Streaming** (Android TV, Google TV, Android Mobile, Tablet, iOS).
+**Plugin Repository** chứa các addon (scraper) mở rộng nguồn phim/stream cho ứng dụng **NuvioTV** (Android TV, Google TV, Mobile, iOS).
 
 > [!TIP]
-> **Hoạt động trực tiếp trên thiết bị (Client-Side - Không cần Server trung gian):**
-> * Không tốn chi phí thuê máy chủ / VPS.
-> * Luồng phát m3u8 được ký theo chính dải IP của thiết bị người xem, giải quyết triệt để lỗi lệch IP gây **"Source error"**.
-> * Tự động gắn cặp Header chống chặn (`Referer: https://upload18.org/` và `Origin: https://upload18.org`) vượt tường lửa Cloudflare 403.
+> **Addon chạy hoàn toàn Client-Side (trên thiết bị của bạn):**
+> * ✅ Không cần server trung gian - tiết kiệm chi phí
+> * ✅ Stream được phát trực tiếp từ CDN về thiết bị
+> * ✅ Tự động xử lý headers chống chặn và bypass các tường lửa
+> * ✅ Tốc độ tải nhanh, không qua trung gian
 
 ---
 
-## 📲 Link cài đặt vào Nuvio
+## 📲 Cài đặt vào NuvioTV
 
-Sao chép đường dẫn bên dưới để dán vào ứng dụng Nuvio:
+### Bước 1: Lấy Link Repository
 
 ```text
 https://raw.githubusercontent.com/9000000/NV-Addon/main/manifest.json
 ```
 
+### Bước 2: Thêm vào NuvioTV
+
+1. Mở ứng dụng **NuvioTV** trên thiết bị
+2. Vào **Settings** ➔ **Plugins** (hoặc **Content & Discovery** ➔ **Plugins**)
+3. Nhấp **Add Plugin** (hoặc biểu tượng `+`)
+4. Paste URL manifest ở trên
+5. Nhấn **Confirm/Add**
+6. Các addon sẽ xuất hiện trong danh sách Scrapers
+
 ---
 
-## 🛠️ Hướng dẫn cài đặt từng bước trên Nuvio
+## 🎯 Cách sử dụng
 
-1. Mở ứng dụng **Nuvio** trên TV hoặc điện thoại của bạn.
-2. Điều hướng tới menu: **Cài đặt (Settings)** ➔ **Plugins** (hoặc **Content & Discovery** ➔ **Plugins**).
-3. Nhấp vào nút **"Add Plugin"** (hoặc biểu tượng dấu `+` ở góc trên màn hình).
-4. Dán đường dẫn sau vào ô nhập:
-   ```text
-   https://raw.githubusercontent.com/9000000/NV-Addon/main/manifest.json
+Sau khi cài đặt:
+
+1. **Search phim** bạn muốn xem trong NuvioTV
+2. **Click vào phim** để xem chi tiết
+3. **Chọn addon** từ danh sách sources có sẵn
+4. NuvioTV sẽ tự động tìm và hiển thị các link stream
+5. **Chọn link chất lượng** bạn muốn (1080p, 720p, etc.)
+6. **Enjoy!** 🍿
+
+---
+
+## ✨ Tính năng
+
+### 🚀 Performance
+- **Client-side execution** - Chạy trực tiếp trên thiết bị
+- **Zero latency** - Kết nối trực tiếp tới CDN
+- **Optimized for Hermes** - Tối ưu cho React Native engine
+
+### 🛡️ Security & Reliability
+- **Anti-block headers** - Tự động bypass tường lửa
+- **Error handling** - Xử lý lỗi gracefully
+- **Sandboxed execution** - Chạy trong môi trường an toàn
+
+### � Quality
+- **Multiple resolutions** - 1080p, 720p, 480p
+- **HLS streaming** - Adaptive bitrate
+- **Direct CDN links** - Không qua proxy
+
+---
+
+## 📦 Danh sách Addon
+
+Repository này chứa nhiều addon từ các nguồn khác nhau. Mỗi addon được tối ưu riêng cho nguồn phim của nó.
+
+Xem file `manifest.json` để biết danh sách đầy đủ các addon có sẵn.
+
+---
+
+## 🔧 Cho Developer
+
+### Cấu trúc Repository
+
+```text
+NV-Addon/
+├── providers/          # Built & minified addon files
+│   ├── addon1.js
+│   ├── addon2.js
+│   └── ...
+├── manifest.json       # Addon registry (Nuvio reads this)
+└── README.md
+```
+
+### Tạo Addon của riêng bạn
+
+Nếu bạn muốn phát triển addon:
+
+1. **Fork repository này**
+2. **Tham khảo source code** trong các file `providers/*.js`
+3. **Follow format chuẩn**:
+   ```javascript
+   // Entry point: getStreams function
+   export async function getStreams(tmdbId, mediaType, season, episode, userConfig) {
+     // Your logic here
+     return streams; // Array of stream objects
+   }
    ```
-5. Nhấn **Xác nhận (Confirm / Add)**.
-6. Plugin **AVDB 18+** sẽ hiển thị trong danh sách Scrapers của Nuvio. Khi bạn chọn một phim, Nuvio sẽ tự động bóc tách link phát trực tiếp `AVDB Direct 🚀` để xem mượt mà!
+4. **Minify code** trước khi add vào `providers/`
+5. **Update manifest.json** với thông tin addon mới
+6. **Submit Pull Request**
+
+### Stream Object Format
+
+```javascript
+{
+  name: "Stream Name",        // Required - Tên hiển thị
+  url: "https://...",         // Required - Link stream
+  quality: "1080p",          // Optional - Chất lượng
+  description: "Details",     // Optional - Mô tả
+  provider: "Source Name",    // Optional - Tên nguồn
+  headers: { ... },          // Optional - Custom headers
+  behaviorHints: { ... }     // Optional - Playback hints
+}
+```
 
 ---
 
-## ✨ Tính năng nổi bật
+## 📱 Thiết bị hỗ trợ
 
-* 🚀 **1080p Full HD HLS**: Tự động giải mã nguồn m3u8 chất lượng cao nhất từ Upload18 / Helvid CDN.
-* 🛡️ **Chống chặn Cloudflare**: Tích hợp sẵn headers chuẩn của trình duyệt.
-* ⚡ **Tốc độ tải tức thì**: Kết nối trực tiếp giữa thiết bị người dùng và CDN, không có độ trễ do server trung gian.
-* 📱 **Tương thích cao**: Đã được biên dịch & tối ưu cho engine JavaScript **Hermes** của React Native trên Nuvio.
+- ✅ Android TV
+- ✅ Google TV
+- ✅ Android Mobile & Tablet
+- ✅ iOS (iPhone/iPad)
+- ✅ Fire TV
 
 ---
 
-## ⚖️ Tuyên bố từ chối trách nhiệm (Disclaimer)
+## 🐛 Báo lỗi
 
-* Plugin này không lưu trữ, phân phối hay tải lên bất kỳ tệp video nào.
-* Toàn bộ nội dung video được bóc tách và phát trực tiếp từ các nhà cung cấp nguồn công khai của bên thứ ba.
+Nếu gặp vấn đề:
+
+1. **Check addon có được cài đặt chưa** (Settings → Plugins)
+2. **Thử addon khác** để xác định lỗi
+3. **Xem logs** trong NuvioTV debug console
+4. **Report issue** trên GitHub với:
+   - Mô tả lỗi
+   - Addon đang dùng
+   - Thiết bị và version NuvioTV
+
+---
+
+## 🤝 Đóng góp
+
+Contributions welcome! 
+
+- 🐛 **Bug fixes**
+- ✨ **New addons**
+- 📚 **Documentation improvements**
+- 🎨 **Code optimization**
+
+### Quy trình Contribute
+
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/new-addon`)
+3. Commit changes (`git commit -m 'Add new addon'`)
+4. Push to branch (`git push origin feature/new-addon`)
+5. Open Pull Request
+
+---
+
+## ⚠️ Disclaimer
+
+- Repository này **KHÔNG lưu trữ** bất kỳ nội dung video nào
+- Addon **chỉ là công cụ tìm kiếm** và trích xuất link từ các nguồn công khai
+- Người dùng **tự chịu trách nhiệm** về nội dung họ truy cập
+- Tôn trọng **bản quyền** và **điều khoản dịch vụ** của các nguồn cung cấp
+
+---
+
+## 📄 License
+
+MIT License - Free to use and modify.
+
+---
+
+## 🔗 Links
+
+- **NuvioTV App**: [Download link]
+- **Documentation**: [Docs link]
+- **Community**: [Discord/Forum link]
+- **Source Code** (Private): Available to contributors
+
+---
+
+## ⭐ Support
+
+Nếu thấy hữu ích, hãy:
+- ⭐ **Star repository** này
+- 🔄 **Share** với bạn bè
+- 🤝 **Contribute** addon mới
+- 💬 **Join community** để thảo luận
+
+---
+
+**Made with ❤️ for NuvioTV Community**
