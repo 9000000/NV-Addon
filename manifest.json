@@ -2,7 +2,7 @@
   "name": "NV-Addon",
   "version": "1.0.0",
   "author": "9000000",
-  "description": "Kho phim Châu Á & JAV 18+ trực tiếp từ AVDB trên ứng dụng Nuvio không cần máy chủ trung gian.",
+  "description": "Kho Scrapers và Addon chất lượng cao cho ứng dụng Nuvio Streaming.",
   "scrapers": [
     {
       "id": "avdb",
