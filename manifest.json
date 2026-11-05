@@ -8,7 +8,7 @@
       "id": "avdb",
       "name": "AVDB 18+",
       "description": "Kho phim Châu Á & JAV 18+ giải mã HLS trực tiếp từ Upload18 kèm Headers chống chặn",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "author": "9000000",
       "supportedTypes": ["movie", "tv"],
       "filename": "providers/avdb.js",
