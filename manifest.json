@@ -1,0 +1,21 @@
+{
+  "name": "NV-Addon",
+  "version": "1.0.0",
+  "author": "9000000",
+  "description": "Kho phim Châu Á & JAV 18+ trực tiếp từ AVDB trên ứng dụng Nuvio không cần máy chủ trung gian.",
+  "scrapers": [
+    {
+      "id": "avdb",
+      "name": "AVDB 18+",
+      "description": "Kho phim Châu Á & JAV 18+ giải mã HLS trực tiếp từ Upload18 kèm Headers chống chặn",
+      "version": "1.0.0",
+      "author": "9000000",
+      "supportedTypes": ["movie"],
+      "filename": "providers/avdb.js",
+      "enabled": true,
+      "formats": ["m3u8"],
+      "logo": "https://upload18.cc/template/api/lemetu/v2/favicon-32.b434cfc1bf.png",
+      "contentLanguage": ["ja", "en", "zh", "vi"]
+    }
+  ]
+}
